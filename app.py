@@ -43,19 +43,21 @@ class WeatherApp:
     def lifecycle(self):
         print("started Weather App lifecycle")
         interval = int(os.environ.get("POLLING_INTERVAL"))
+
         while not self.shutdown_requested:
+
             try:
 
-                polled_data = WeatherDataSources.get_weather(
-                    ["Berlin", "Sydney"], [1, 2, 3]
-                )
+                polled_data = WeatherDataSources.get_weather(self.cities, self.sources)
                 print("Finished Polling Data:")
                 print(polled_data)
+
                 LogzAPI.post_log(
                     {"message": "WeatherApp | data poll cycle", "data": polled_data}
                 )
 
                 self._interruptible_sleep(interval)
+
             except Exception as e:
                 print(f"Error in lifecycle: {e}")
                 if self.shutdown_requested:

@@ -20,4 +20,4 @@ COPY . .
 
 
 # Set the default command
-CMD ["python", "app.py"]
+CMD ["python", "main.py"]

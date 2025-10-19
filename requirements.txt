@@ -5,3 +5,4 @@ aiofiles
 requests
 packaging
 pytest
+dotenv
