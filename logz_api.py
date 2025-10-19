@@ -25,6 +25,7 @@ class LogzAPI:
             data=log,
             headers={
                 "User-Agent": "logzio-json-logs",
+                "Content-Type": "application/json",
             },
         )
         return response
