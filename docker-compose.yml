@@ -1,0 +1,15 @@
+
+services:
+ integrations-api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+
+    env_file:
+      - .env
+    
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
