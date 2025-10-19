@@ -11,8 +11,11 @@ dotenv.load_dotenv()
 
 
 class WeatherApp:
-    def __init__(self):
+    def __init__(self, cities, sources):
+        self.cities = cities
+        self.sources = sources
         self.shutdown_requested = False
+
         self.setup_signal_handlers()
         self.lifecycle()
 
@@ -33,12 +36,16 @@ class WeatherApp:
                 break
             time.sleep(1)
 
+    @staticmethod
+    def get_weather(cities: [str], sources: [int]):
+        return WeatherDataSources.get_weather(cities, sources)
+
     def lifecycle(self):
         print("started Weather App lifecycle")
         interval = int(os.environ.get("POLLING_INTERVAL"))
         while not self.shutdown_requested:
             try:
-                # time.sleep(interval)
+
                 polled_data = WeatherDataSources.get_weather(
                     ["Berlin", "Sydney"], [1, 2, 3]
                 )
@@ -60,4 +67,4 @@ class WeatherApp:
         print("Weather App lifecycle completed gracefully")
 
 
-WEATHER_APP = WeatherApp()
+# WEATHER_APP = WeatherApp()

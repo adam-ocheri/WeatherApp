@@ -15,10 +15,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Create outputs directory
-RUN mkdir -p outputs
+# RUN mkdir -p outputs
 
-# Expose port
-EXPOSE 8000
+
 
 # Set the default command
-CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "app.py"]

@@ -1,8 +1,7 @@
 
 tqdm
-fastapi
-uvicorn[standard]
 python-multipart
 aiofiles
 requests
 packaging
+pytest
